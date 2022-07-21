@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function make_cache(T = 1 * 60 * 60 * 1000) {
-    const Store = {};
+function make_cache(Store, T = 1 * 60 * 60 * 1000) {
     const Timeouts = {};
     const Handler = {
         get(store, key) {
