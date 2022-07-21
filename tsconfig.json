@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "CommonJS",
+        "moduleResolution": "Node",
+        "strict": true,
+        "noUncheckedIndexedAccess": true,
+        "noPropertyAccessFromIndexSignature": true,
+	"outDir": "./dist"
+    },
+    "include": ["index.ts"],
+    "exclude": ["node_modules"]
+}
