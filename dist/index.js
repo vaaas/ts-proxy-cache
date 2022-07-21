@@ -2,26 +2,25 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 function make_cache(T = 1 * 60 * 60 * 1000) {
     const Store = {};
-    const Functions = {};
     const Timeouts = {};
     const Handler = {
         get(store, key) {
-            if (!(key in Timeouts && key in Functions))
-                return undefined;
             const now = Date.now();
             if (now > Timeouts[key]) {
-                store[key] = Functions[key]();
-                Timeouts[key] = now + T;
+                delete Store[key];
+                return undefined;
             }
-            return store[key];
+            else
+                return store[key];
         },
         set(store, key, value) {
-            Functions[key] = value;
-            Timeouts[key] = 0;
+            Store[key] = value;
+            Timeouts[key] = Date.now() + T;
             return true;
         },
         deleteProperty(store, key) {
-            Timeouts[key] = 0;
+            delete Timeouts[key];
+            delete Store[key];
             return true;
         },
     };
